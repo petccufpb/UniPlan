@@ -5,15 +5,11 @@
 	"scripts": {
 		"build": "next build",
 		"dev": "next dev --turbo",
-		"prepare": "git config --local core.hooksPath .githooks",
 		"start": "next start",
 		"tad": "tauri android dev",
 		"tb": "tauri build",
 		"td": "tauri dev",
 		"tid": "tauri ios dev"
-	},
-	"lint-staged": {
-		"*/.(js|jsx|json|jsonc|ts|tsx)": ["biome check --apply"]
 	},
 	"dependencies": {
 		"next": "^15.0.3",
@@ -22,14 +18,10 @@
 		"sass": "^1.81.0"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^1.9.4",
 		"@next/env": "^15.0.3",
 		"@tauri-apps/cli": "^2.1.0",
 		"@tsconfig/next": "^2.0.3",
 		"@types/react": "^18.3.12",
-		"@types/react-dom": "^18.3.1",
-		"bun-types": "^1.1.37",
-		"lint-staged": "^15.2.10",
-		"typescript": "^5.7.2"
+		"@types/react-dom": "^18.3.1"
 	}
 }

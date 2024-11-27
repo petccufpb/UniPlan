@@ -1,0 +1,7 @@
+{
+	"name": "@uniplan/domain",
+	"private": true,
+	"dependencies": {
+		"@uniplan/infra": "workspace:*"
+	}
+}

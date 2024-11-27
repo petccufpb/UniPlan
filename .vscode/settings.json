@@ -1,0 +1,12 @@
+{
+	"[javascript][javascriptreact][json][jsonc][typescript][typescriptreact]": {
+		"editor.codeActionsOnSave": {
+			"source.organizeImports.biome": "always"
+		},
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"editor.formatOnSave": true,
+	"files.insertFinalNewline": true,
+	"typescript.preferences.preferTypeOnlyAutoImports": true,
+	"typescript.tsdk": "node_modules/typescript/lib"
+}

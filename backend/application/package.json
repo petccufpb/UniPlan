@@ -1,0 +1,10 @@
+{
+	"name": "@uniplan/application",
+	"private": true,
+	"dependencies": {
+		"@uniplan/domain": "workspace:*"
+	},
+	"devDependencies": {
+		"http-status-codes": "^2.3.0"
+	}
+}

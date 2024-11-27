@@ -17,7 +17,6 @@ module.exports = async (phase, { defaultConfig }) => {
             silenceDeprecations: ["legacy-js-api"],
         },
         skipTrailingSlashRedirect: true,
-        swcMinify: true,
         typescript: {
             ignoreBuildErrors: true,
         },

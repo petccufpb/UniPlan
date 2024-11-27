@@ -1,0 +1,17 @@
+{
+	"name": "uniplan",
+	"private": true,
+    "workspaces": ["backend/*", "frontend"],
+	"scripts": {
+		"prepare": "git config --local core.hooksPath .githooks"
+	},
+	"lint-staged": {
+		"*/.(js|jsx|json|jsonc|ts|tsx)": ["biome check --apply"]
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
+		"bun-types": "^1.1.37",
+		"lint-staged": "^15.2.10",
+		"typescript": "^5.7.2"
+	}
+}
