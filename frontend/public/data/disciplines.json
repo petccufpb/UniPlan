@@ -1,0 +1,986 @@
+[
+	{
+		"id": "1107137",
+		"category": 4,
+		"ch": 60,
+		"name": "Introdução ao Computador",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "1107201",
+		"category": 4,
+		"ch": 45,
+		"name": "Metodologia do Trabalho Científico",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "1107206",
+		"category": 4,
+		"ch": 45,
+		"name": "Pesquisa Aplicada à Computação",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "1107147",
+		"category": 4,
+		"ch": 60,
+		"name": "Linguagem de Programação I",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "1204203",
+		"category": 4,
+		"ch": 60,
+		"name": "Administração de Sistemas de Informação",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "1101171",
+		"category": 4,
+		"ch": 60,
+		"name": "Física Aplicada à Computação I",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "1107148",
+		"category": 4,
+		"ch": 60,
+		"name": "Linguagem de Programação II",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "1107186",
+		"category": 4,
+		"ch": 60,
+		"name": "Estrutura de Dados",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "GDCOC0081",
+		"category": 4,
+		"ch": 60,
+		"name": "Teoria da Computação",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "1107204",
+		"category": 4,
+		"ch": 60,
+		"name": "Ordenação e Recuperação de Dados",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "GDSCO0039",
+		"category": 4,
+		"ch": 90,
+		"name": "Circuitos Lógicos",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "GDSCO0047",
+		"category": 4,
+		"ch": 60,
+		"name": "Interação Homem-Máquina",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "1107120",
+		"category": 4,
+		"ch": 30,
+		"name": "Computadores e Sociedade",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00070",
+		"category": 3,
+		"ch": 60,
+		"name": "UCE - Ciência da Computação / Projeto Integrado I",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "1404138",
+		"category": 3,
+		"ch": 75,
+		"name": "Língua Inglesa I",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "GDLPL0063",
+		"category": 3,
+		"ch": 60,
+		"name": "Português Instrumental",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00029",
+		"category": 2,
+		"ch": 60,
+		"name": "Tópicos Especiais para Ciência da Computação I",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00043",
+		"category": 2,
+		"ch": 60,
+		"name": "Tópicos Especiais para Ciência da Computação II",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00044",
+		"category": 2,
+		"ch": 30,
+		"name": "Tópicos Especiais para Ciência da Computação III",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "1106161",
+		"category": 3,
+		"ch": 60,
+		"name": "Bases da Educação Ambiental",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "1205042",
+		"category": 3,
+		"ch": 60,
+		"name": "Sociologia da Informação",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "1401134",
+		"category": 3,
+		"ch": 60,
+		"name": "Introdução à Sociologia",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "1402154",
+		"category": 3,
+		"ch": 60,
+		"name": "Filosofia das Ciências",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "1405108",
+		"category": 3,
+		"ch": 60,
+		"name": "Introdução à Psicologia",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "1414047",
+		"category": 3,
+		"ch": 60,
+		"name": "Edição de Vídeo I",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "1501184",
+		"category": 3,
+		"ch": 60,
+		"name": "Direitos Humanos",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DADM00249",
+		"category": 3,
+		"ch": 60,
+		"name": "Administração para Ciências Exatas e Tecnológicas I",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DCOC00063",
+		"category": 3,
+		"ch": 60,
+		"name": "Tópicos Avançados em Ciência da Computação XI",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DCOC00064",
+		"category": 3,
+		"ch": 60,
+		"name": "Tópicos Avançados em Ciência da Computação XII",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DCOC00065",
+		"category": 3,
+		"ch": 60,
+		"name": "Tópicos Avançados em Ciência da Computação XIII",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DCOC00066",
+		"category": 3,
+		"ch": 60,
+		"name": "Tópicos Avançados em Ciência da Computação XIV",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DCOC00067",
+		"category": 3,
+		"ch": 60,
+		"name": "Tópicos Avançados em Ciência da Computação XV",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00057",
+		"category": 2,
+		"ch": 30,
+		"name": "Tópicos Especiais para Ciência da Computação - Extensão III",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00058",
+		"category": 2,
+		"ch": 60,
+		"name": "Tópicos Especiais para Ciência da Computação - Extensão II",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00059",
+		"category": 2,
+		"ch": 60,
+		"name": "Tópicos Especiais para Ciência da Computação - Extensão I",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00060",
+		"category": 3,
+		"ch": 30,
+		"name": "UCE - Ciência da Computação / Projeto Integrado III",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00061",
+		"category": 3,
+		"ch": 60,
+		"name": "UCE - Ciência da Computação / Projeto Integrado II",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00069",
+		"category": 3,
+		"ch": 150,
+		"name": "Atividade Extensionista de Estágio Supervisionado Não Obriga...",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00071",
+		"category": 3,
+		"ch": 60,
+		"name": "Tópicos Avançados em Ciência da Computação I",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00072",
+		"category": 3,
+		"ch": 60,
+		"name": "Tópicos Avançados em Ciência da Computação II",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00073",
+		"category": 3,
+		"ch": 60,
+		"name": "Tópicos Avançados em Ciência da Computação III",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00074",
+		"category": 3,
+		"ch": 60,
+		"name": "Tópicos Avançados em Ciência da Computação IV",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00075",
+		"category": 3,
+		"ch": 60,
+		"name": "Tópicos Avançados em Ciência da Computação V",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DSCO00026",
+		"category": 3,
+		"ch": 60,
+		"name": "Fundamentos da Interação Humano-Computador",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DSCO00027",
+		"category": 3,
+		"ch": 60,
+		"name": "Tópicos Avançados em Ciência da Computação VI",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DSCO00028",
+		"category": 3,
+		"ch": 60,
+		"name": "Tópicos Avançados em Ciência da Computação VII",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DSCO00029",
+		"category": 3,
+		"ch": 60,
+		"name": "Tópicos Avançados em Ciência da Computação VIII",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DSCO00030",
+		"category": 3,
+		"ch": 60,
+		"name": "Tópicos Avançados em Ciência da Computação IX",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DSCO00031",
+		"category": 3,
+		"ch": 60,
+		"name": "Tópicos Avançados em Ciência da Computação X",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "GDADM0111",
+		"category": 3,
+		"ch": 60,
+		"name": "Administração de Marketing",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "GDADM0117",
+		"category": 3,
+		"ch": 60,
+		"name": "Sistemas de Informação e Decisão",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "GDCOC0106",
+		"category": 3,
+		"ch": 60,
+		"name": "Empreendedorismo",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "GDLS0024",
+		"category": 3,
+		"ch": 60,
+		"name": "Libras",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "GDSCO0066",
+		"category": 3,
+		"ch": 60,
+		"name": "Sistemas Multimídia",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "PSAE00251",
+		"category": 3,
+		"ch": 60,
+		"name": "Princípios de Economia",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "1107259",
+		"category": 0,
+		"ch": 60,
+		"name": "Matemática Discreta",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "1107136",
+		"category": 0,
+		"ch": 60,
+		"name": "Introdução à Programação",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "1103177",
+		"category": 0,
+		"ch": 60,
+		"name": "Cálculo Diferencial e Integral I",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "1103118",
+		"category": 0,
+		"ch": 60,
+		"name": "Cálculo Vetorial e Geometria Analítica",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00045",
+		"category": 1,
+		"ch": 30,
+		"name": "Metodologia do Trabalho Científico para Ciência da Computação...",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00056",
+		"category": 1,
+		"ch": 30,
+		"name": "Pesquisa Aplicada à Computação",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00046",
+		"category": 0,
+		"ch": 60,
+		"name": "Introdução à Ciência da Computação",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "GDCOC0079",
+		"category": 0,
+		"ch": 60,
+		"name": "Lógica Aplicada à Computação",
+		"requirements": ["1107259"],
+		"coRequirements": []
+	},
+	{
+		"id": "1103178",
+		"category": 0,
+		"ch": 60,
+		"name": "Cálculo Diferencial e Integral II",
+		"requirements": ["1103177", "1103118"],
+		"coRequirements": []
+	},
+	{
+		"id": "1103179",
+		"category": 0,
+		"ch": 60,
+		"name": "Introdução à Álgebra Linear",
+		"requirements": ["1103118"],
+		"coRequirements": []
+	},
+	{
+		"id": "GDSCO0036",
+		"category": 0,
+		"ch": 60,
+		"name": "Arquitetura de Computadores I",
+		"requirements": ["DINF00046"],
+		"coRequirements": []
+	},
+	{
+		"id": "GDCOC0101",
+		"category": 0,
+		"ch": 60,
+		"name": "Programação Orientada a Objetos",
+		"requirements": ["1107136"],
+		"coRequirements": []
+	},
+	{
+		"id": "1103232",
+		"category": 3,
+		"ch": 60,
+		"name": "Cálculo Diferencial e Integral III",
+		"requirements": ["1103178"],
+		"coRequirements": []
+	},
+	{
+		"id": "1108100",
+		"category": 0,
+		"ch": 60,
+		"name": "Cálculo das Probabilidades e Estatística I",
+		"requirements": ["1103178"],
+		"coRequirements": []
+	},
+	{
+		"id": "GDCOC0072",
+		"category": 0,
+		"ch": 60,
+		"name": "Cálculo Numérico",
+		"requirements": ["GDCOC0101", "1103178"],
+		"coRequirements": []
+	},
+	{
+		"id": "GDSCO0037",
+		"category": 0,
+		"ch": 60,
+		"name": "Arquitetura de Computadores II",
+		"requirements": ["GDSCO0036"],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00050",
+		"category": 0,
+		"ch": 60,
+		"name": "Programação Funcional",
+		"requirements": ["1107136"],
+		"coRequirements": []
+	},
+	{
+		"id": "DCOC00062",
+		"category": 0,
+		"ch": 60,
+		"name": "Linguagens Formais e Computabilidade",
+		"requirements": ["GDCOC0079"],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00047",
+		"category": 0,
+		"ch": 60,
+		"name": "Estruturas de Dados e Algoritmos I",
+		"requirements": ["GDCOC0101"],
+		"coRequirements": []
+	},
+	{
+		"id": "1103180",
+		"category": 3,
+		"ch": 60,
+		"name": "Séries e Equações Diferenciais Ordinárias",
+		"requirements": ["1103178", "1103179"],
+		"coRequirements": []
+	},
+	{
+		"id": "5102007",
+		"category": 3,
+		"ch": 60,
+		"name": "Pesquisa Operacional",
+		"requirements": ["GDCOC0101", "1103179"],
+		"coRequirements": []
+	},
+	{
+		"id": "5102009",
+		"category": 3,
+		"ch": 60,
+		"name": "Álgebra Linear Computacional",
+		"requirements": ["1103179", "GDCOC0101"],
+		"coRequirements": []
+	},
+	{
+		"id": "GDSCO0054",
+		"category": 3,
+		"ch": 60,
+		"name": "Introdução à Teoria da Informação",
+		"requirements": ["1103179"],
+		"coRequirements": []
+	},
+	{
+		"id": "GDSCO0081",
+		"category": 3,
+		"ch": 60,
+		"name": "Sistemas Embarcados I",
+		"requirements": ["GDSCO0036"],
+		"coRequirements": []
+	},
+	{
+		"id": "1107191",
+		"category": 0,
+		"ch": 60,
+		"name": "Introdução à Inteligência Artificial",
+		"requirements": ["GDCOC0079", "DINF00047"],
+		"coRequirements": []
+	},
+	{
+		"id": "1107128",
+		"category": 0,
+		"ch": 60,
+		"name": "Engenharia de Software",
+		"requirements": ["GDCOC0101"],
+		"coRequirements": []
+	},
+	{
+		"id": "GDSCO0055",
+		"category": 0,
+		"ch": 60,
+		"name": "Introdução ao Processamento Digital de Imagens",
+		"requirements": ["1108100", "DINF00047"],
+		"coRequirements": []
+	},
+	{
+		"id": "GDSCO0068",
+		"category": 0,
+		"ch": 60,
+		"name": "Sistemas Operacionais I",
+		"requirements": ["GDCOC0101", "GDSCO0036"],
+		"coRequirements": []
+	},
+	{
+		"id": "GDSCO0062",
+		"category": 0,
+		"ch": 60,
+		"name": "Redes de Computadores I",
+		"requirements": ["GDCOC0101"],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00048",
+		"category": 0,
+		"ch": 60,
+		"name": "Estruturas de Dados e Algoritmos II",
+		"requirements": ["DINF00047"],
+		"coRequirements": []
+	},
+	{
+		"id": "GDCOC0091",
+		"category": 3,
+		"ch": 60,
+		"name": "Teoria dos Grafos Aplicada",
+		"requirements": ["DINF00047"],
+		"coRequirements": []
+	},
+	{
+		"id": "GDCOC0096",
+		"category": 3,
+		"ch": 60,
+		"name": "Visualização de Dados",
+		"requirements": ["DINF00047"],
+		"coRequirements": []
+	},
+	{
+		"id": "GDCOC0114",
+		"category": 3,
+		"ch": 60,
+		"name": "Séries Temporais",
+		"requirements": ["1108100"],
+		"coRequirements": []
+	},
+	{
+		"id": "GDSCO0051",
+		"category": 3,
+		"ch": 60,
+		"name": "Introdução à Computação Gráfica",
+		"requirements": ["DINF00047", "1103179"],
+		"coRequirements": []
+	},
+	{
+		"id": "1107184",
+		"category": 0,
+		"ch": 60,
+		"name": "Especificação de Requisitos de Software",
+		"requirements": ["1107128"],
+		"coRequirements": []
+	},
+	{
+		"id": "1107180",
+		"category": 0,
+		"ch": 60,
+		"name": "Banco de Dados I",
+		"requirements": ["DINF00047"],
+		"coRequirements": []
+	},
+	{
+		"id": "1107205",
+		"category": 0,
+		"ch": 60,
+		"name": "Paradigmas de Linguagens de Programação",
+		"requirements": ["DINF00050", "DCOC00062"],
+		"coRequirements": []
+	},
+	{
+		"id": "GDCOC0076",
+		"category": 0,
+		"ch": 60,
+		"name": "Análise e Projeto de Algoritmos",
+		"requirements": ["DINF00047"],
+		"coRequirements": []
+	},
+	{
+		"id": "1107209",
+		"category": 0,
+		"ch": 60,
+		"name": "Sistemas Baseados em Conhecimento",
+		"requirements": ["1107191"],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00049",
+		"category": 0,
+		"ch": 60,
+		"name": "Programação Concorrente e Distribuída",
+		"requirements": ["GDSCO0062", "GDSCO0068"],
+		"coRequirements": []
+	},
+	{
+		"id": "5101001",
+		"category": 3,
+		"ch": 60,
+		"name": "Avaliação de Desempenho de Sistemas Operacionais",
+		"requirements": ["GDSCO0062"],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00064",
+		"category": 3,
+		"ch": 60,
+		"name": "Reuso de Software",
+		"requirements": ["1107128"],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00067",
+		"category": 3,
+		"ch": 60,
+		"name": "Sistemas Multiagentes",
+		"requirements": ["1107191"],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00068",
+		"category": 3,
+		"ch": 60,
+		"name": "Inteligência Artificial Aplicada à Saúde",
+		"requirements": ["1107191"],
+		"coRequirements": []
+	},
+	{
+		"id": "DSCO00032",
+		"category": 3,
+		"ch": 60,
+		"name": "Administração de Sistemas",
+		"requirements": ["GDSCO0062"],
+		"coRequirements": []
+	},
+	{
+		"id": "GDSCO0032",
+		"category": 3,
+		"ch": 60,
+		"name": "Redes Sem Fio",
+		"requirements": ["GDSCO0062"],
+		"coRequirements": []
+	},
+	{
+		"id": "DSCO00021",
+		"category": 0,
+		"ch": 60,
+		"name": "Segurança Computacional",
+		"requirements": ["GDSCO0062"],
+		"coRequirements": []
+	},
+	{
+		"id": "1107202",
+		"category": 0,
+		"ch": 60,
+		"name": "Métodos de Projeto de Software",
+		"requirements": ["1107128"],
+		"coRequirements": []
+	},
+	{
+		"id": "DSCO00023",
+		"category": 1,
+		"ch": 60,
+		"name": "Inovação de Base Científica-Tecnológica e Empreendedorismo",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DSCO00022",
+		"category": 0,
+		"ch": 60,
+		"name": "Sistemas Distribuídos",
+		"requirements": ["DINF00049"],
+		"coRequirements": []
+	},
+	{
+		"id": "GDSCO0043",
+		"category": 0,
+		"ch": 60,
+		"name": "Construção de Compiladores I",
+		"requirements": ["DINF00047", "DCOC00062"],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00051",
+		"category": 0,
+		"ch": 60,
+		"name": "Paradigmas de Aprendizagem de Máquina",
+		"requirements": ["GDCOC0072", "1107191"],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00062",
+		"category": 3,
+		"ch": 60,
+		"name": "Bancos de Dados Avançados",
+		"requirements": ["1107180"],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00063",
+		"category": 3,
+		"ch": 60,
+		"name": "Sistemas de Gerenciamento de Bancos de Dados",
+		"requirements": ["1107180", "DINF00048"],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00065",
+		"category": 3,
+		"ch": 60,
+		"name": "Desenvolvimento de Sistemas Web",
+		"requirements": ["GDSCO0062", "1107180"],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00066",
+		"category": 3,
+		"ch": 60,
+		"name": "Implementação de Sistemas para Dispositivos Móveis",
+		"requirements": ["GDSCO0062", "1107180"],
+		"coRequirements": []
+	},
+	{
+		"id": "GDCOC0098",
+		"category": 3,
+		"ch": 60,
+		"name": "Big Data",
+		"requirements": ["1107180"],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00052",
+		"category": 0,
+		"ch": 60,
+		"name": "Engenharia de Sistemas Distribuídos",
+		"requirements": ["DSCO00022", "1107202"],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00055",
+		"category": 1,
+		"ch": 60,
+		"name": "Trabalho de Conclusão de Curso para Ciência da Computação",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00054",
+		"category": 0,
+		"ch": 60,
+		"name": "Teste de Software",
+		"requirements": ["1107128"],
+		"coRequirements": []
+	},
+	{
+		"id": "DINF00053",
+		"category": 0,
+		"ch": 60,
+		"name": "Gerenciamento de Projeto de Software",
+		"requirements": ["1107128"],
+		"coRequirements": []
+	},
+	{
+		"id": "GDADM0110",
+		"category": 1,
+		"ch": 60,
+		"name": "Sistemas de Informação nas Organizações",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DSCO00024",
+		"category": 0,
+		"ch": 60,
+		"name": "Interação Humano-Computador",
+		"requirements": ["1107128"],
+		"coRequirements": []
+	},
+	{
+		"id": "1107203",
+		"category": 3,
+		"ch": 60,
+		"name": "Métodos Formais para Desenvolvimento de Software",
+		"requirements": ["1107202", "GDCOC0079"],
+		"coRequirements": []
+	},
+	{
+		"id": "GDCOC0094",
+		"category": 3,
+		"ch": 60,
+		"name": "Aprendizado Profundo",
+		"requirements": ["DINF00051"],
+		"coRequirements": []
+	},
+	{
+		"id": "GDINF0106",
+		"category": 1,
+		"ch": 60,
+		"name": "Computadores e Sociedade",
+		"requirements": [],
+		"coRequirements": []
+	},
+	{
+		"id": "DSCO00025",
+		"category": 3,
+		"ch": 60,
+		"name": "Design de Interação",
+		"requirements": ["DSCO00024"],
+		"coRequirements": []
+	},
+	{
+		"id": "GDINF0132",
+		"category": 0,
+		"ch": 300,
+		"name": "Estágio Supervisionado - Ciência da Computação",
+		"requirements": ["1107128"],
+		"coRequirements": []
+	}
+]

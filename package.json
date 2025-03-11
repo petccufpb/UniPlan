@@ -1,17 +1,31 @@
 {
 	"name": "uniplan",
 	"private": true,
-    "workspaces": ["backend/*", "frontend"],
+	"workspaces": ["backend/*", "frontend"],
 	"scripts": {
+		"format": "bun format:biome && bun format:eslint ./src",
+		"format:biome": "biome check --diagnostic-level=error --write --unsafe",
+		"format:eslint": "eslint --quiet --fix",
 		"prepare": "git config --local core.hooksPath .githooks"
 	},
 	"lint-staged": {
-		"*/.(js|jsx|json|jsonc|ts|tsx)": ["biome check --apply"]
+		"**/*.(css|graphql|js|jsx|json|jsonc|ts|tsx)": ["bun format:biome --no-errors-on-unmatched"],
+		"**/*.(js|ts)": ["bun format:eslint"]
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
-		"bun-types": "^1.1.37",
+		"@eslint/js": "^9.22.0",
+		"@hyoretsu/tsconfig": "^1.0.4",
+		"@types/bun": "^1.2.5",
+		"@types/node": "^22.13.10",
+		"eslint": "^9.22.0",
+		"eslint-config-biome": "^1.9.4",
+		"eslint-plugin-jest": "^28.11.0",
+		"git-commit-msg-linter": "^5.0.8",
+		"jiti": "^2.4.2",
 		"lint-staged": "^15.2.10",
-		"typescript": "^5.7.2"
-	}
+		"typescript": "^5.7.2",
+		"typescript-eslint": "^8.26.1"
+	},
+	"trustedDependencies": ["@biomejs/biome", "@parcel/watcher"]
 }

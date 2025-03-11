@@ -1,9 +1,9 @@
-import type { PropsWithChildren } from "react";
-import WebVitals from "./components/WebVitals";
+import type { PropsWithChildren } from 'react'
+import './_global.scss'
+import WebVitals from './components/WebVitals'
+import { Providers } from './lib/providers'
 
-import "./_global.scss";
-
-const siteName = "UniDB";
+const siteName = 'UniDB'
 
 export const metadata = {
 	applicationName: siteName,
@@ -14,27 +14,27 @@ export const metadata = {
 	openGraph: {
 		images: [
 			{
-				url: "/opengraph.jpg",
+				url: '/opengraph.jpg',
 				width: 1200,
 				height: 627,
 				alt: siteName,
 			},
 		],
 		siteName,
-		type: "website",
+		type: 'website',
 	},
 	title: {
 		default: siteName,
 		template: `%s | ${siteName}`,
 	},
 	twitter: {
-		card: "summary_large_image",
-		creator: `${process.env.NEXT_PUBLIC_SITE_CONTENT_CREATOR}` || "@hyoretsu",
+		card: 'summary_large_image',
+		creator: `${process.env.NEXT_PUBLIC_SITE_CONTENT_CREATOR}` || '@hyoretsu',
 	},
-};
+}
 export const viewport = {
-	themeColor: "#4F53B7",
-};
+	themeColor: '#4F53B7',
+}
 
 export default function RootLayout({ children }: PropsWithChildren) {
 	return (
@@ -44,10 +44,10 @@ export default function RootLayout({ children }: PropsWithChildren) {
 				<meta name="theme-color" content={viewport.themeColor} />
 			</head>
 			<body>
-				<main>{children}</main>
+				<Providers>{children}</Providers>
 
-				{process.env.NODE_ENV === "production" && <WebVitals />}
+				{process.env.NODE_ENV === 'production' && <WebVitals />}
 			</body>
 		</html>
-	);
+	)
 }

@@ -1,9 +1,5 @@
-import styles from "./styles.module.scss";
+import { redirect } from 'next/navigation'
 
 export default function Home() {
-	return (
-		<div className={styles.container}>
-			<span>Funcionou</span>
-		</div>
-	);
+	redirect('/planejador')
 }

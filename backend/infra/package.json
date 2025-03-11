@@ -5,10 +5,10 @@
 	"scripts": {
 		"build": "bun build --compile --target=bun-linux-arm64 --outfile=../dist/server ./index.ts",
 		"dev": "cd .. && bun run --watch ./infra/index.ts",
+		"postintall": "prisma generate",
 		"prisma:migrate": "prisma migrate dev --create-only && prisma generate",
 		"prisma:migrate_deploy": "prisma migrate deploy",
 		"prisma:migrate_dev": "prisma migrate dev",
-		"prepare": "prisma generate",
 		"start": "NODE_ENV=production bun ./index.ts"
 	},
 	"prisma": {
@@ -25,7 +25,7 @@
 	},
 	"devDependencies": {
 		"@types/pg": "^8.11.6",
-		"prisma": "^5.19.1",
+		"prisma": "^6.1.0",
 		"prisma-kysely": "^1.8.0"
 	}
 }
