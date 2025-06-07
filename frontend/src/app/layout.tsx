@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from 'react'
-import './_global.scss'
+import './_global.css'
 import WebVitals from './components/WebVitals'
 import { Providers } from './lib/providers'
 
