@@ -1,9 +1,11 @@
+import { themes } from '@styles'
 import type { PropsWithChildren } from 'react'
 import './_global.css'
+import './_global.css.ts'
 import WebVitals from './components/WebVitals'
 import { Providers } from './lib/providers'
 
-const siteName = 'UniDB'
+const siteName = 'ConectaU'
 
 export const metadata = {
 	applicationName: siteName,
@@ -38,12 +40,13 @@ export const viewport = {
 
 export default function RootLayout({ children }: PropsWithChildren) {
 	return (
-		<html lang="en" suppressHydrationWarning>
+		<html lang="en">
 			<head>
 				<link rel="manifest" href="/site.webmanifest" />
 				<meta name="theme-color" content={viewport.themeColor} />
 			</head>
-			<body>
+
+			<body className={themes.pet}>
 				<Providers>{children}</Providers>
 
 				{process.env.NODE_ENV === 'production' && <WebVitals />}
