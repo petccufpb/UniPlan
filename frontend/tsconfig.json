@@ -1,33 +1,23 @@
 {
-	"extends": "@hyoretsu/tsconfig/frontend",
+	"extends": "@tsconfig/next/tsconfig.json",
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
 		"baseUrl": "./src",
 		"downlevelIteration": true,
-		"jsx": "preserve",
 		"noFallthroughCasesInSwitch": true,
 		"noImplicitAny": true,
 		"paths": {
 			"@app/*": ["app/*"],
 			"@assets/*": ["assets/*"],
-			"@assets": ["assets"],
 			"@components/*": ["components/*"],
-			"@components": ["components"],
 			"@context/*": ["context/*"],
-			"@context": ["context"],
 			"@database/*": ["database/*"],
-			"@database": ["database"],
 			"@hooks/*": ["hooks/*"],
-			"@hooks": ["hooks"],
 			"@lib/*": ["lib/*"],
 			"@public/*": ["../public/*"],
-			"@styles/*": ["styles/*"],
-			"@styles": ["styles"],
-			"@utils/*": ["utils/*"],
-			"@utils": ["utils"],
-			"~/*": ["*"]
+			"@services/*": ["services/*"],
+			"@utils/*": ["utils/*"]
 		},
-		"plugins": [{ "name": "next" }],
 		"strictNullChecks": true,
 		"target": "ES6",
 		"typeRoots": ["./node_modules/@types", "src/@types"]

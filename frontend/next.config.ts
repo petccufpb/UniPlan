@@ -1,4 +1,3 @@
-import { createVanillaExtractPlugin } from '@vanilla-extract/next-plugin'
 import { NextConfig } from 'next'
 import {
 	PHASE_DEVELOPMENT_SERVER,
@@ -22,8 +21,6 @@ type NextConfigFunction = (
 	},
 ) => Promise<NextConfig> | NextConfig
 
-const withVanillaExtract = createVanillaExtractPlugin()
-
 const configFn: NextConfigFunction = async (phase, { defaultConfig }) => {
 	const baseConf: NextConfig = {
 		eslint: {
@@ -39,7 +36,7 @@ const configFn: NextConfigFunction = async (phase, { defaultConfig }) => {
 		baseConf.assetPrefix = `http://${process.env.TAURI_DEV_HOST || 'localhost'}:3000`
 	}
 
-	return withVanillaExtract(baseConf)
+	return baseConf
 }
 
 export default configFn

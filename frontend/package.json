@@ -7,7 +7,6 @@
 		"next": "^15.3.3",
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0",
-		"zod": "^3.25.56",
 		"zustand": "^5.0.5"
 	},
 	"devDependencies": {
@@ -16,7 +15,10 @@
 		"@tsconfig/next": "^2.0.3",
 		"@types/react": "^19.1.6",
 		"@types/react-dom": "^19.1.6",
-		"@vanilla-extract/next-plugin": "^2.4.11"
+		"@vanilla-extract/next-plugin": "^2.4.11",
+		"autoprefixer": "^10.4.21",
+		"postcss": "^8.5.4",
+		"tailwindcss": "^4.1.8"
 	},
 	"private": true,
 	"scripts": {
