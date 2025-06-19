@@ -12,7 +12,9 @@
 		"tid": "tauri ios dev"
 	},
 	"dependencies": {
+		"@react-pdf/renderer": "^4.3.0",
 		"actify": "^0.4.1",
+		"marked": "^15.0.12",
 		"next": "^15.1.3",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
