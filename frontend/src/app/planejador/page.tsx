@@ -58,23 +58,27 @@ const PDFDocument = ({ markdown }: PDFDocumentProps) => (
     </Page>
   </Document>
 )
+
 export enum VariavelPDF {
 	coordinatorName = 'Nome do Coordenador',
 	guidingProfessor = 'Professor Orientador',
 	studentId = 'Matrícula do Aluno',
 	studentName = 'Nome do Aluno',
 	requestDate = 'Data da Solicitação',
+  listOfDisciplines = 'Lista de Disciplinas'
 }
+
 // Template do documento, com variáveis a serem preenchidas pelo usuário
 const template = {
   title: "Dispensa de estágio supervisionado",
-  content: '**ANEXO III da Resolução nº 04/2023 do Colegiado do Curso de Ciência da Computação, que regulamenta o Estágio Supervisionado no Curso de Ciência da Computação, do Centro de Informática, da Universidade Federal da Paraíba.**\n\nAo(À) Coordenador(a) do Curso de Ciência da Computação\nProf(a). {coordinatorName} \n\n Eu, **{studentName}**, aluno(a) regularmente matriculado(a) no curso de Ciência da Computação desta Universidade, matrícula nº {studentId}, venho por meio desta **requerer a dispensa de Estágio Supervisionado** por já ter realizado **estágio não obrigatório**, realizado sob orientação do(a) professor(a) **{guidingProfessor}**, conforme documentação em anexo.\n\n\n :::align-center\nJoão Pessoa, {requestDate}\n:::\n\n\n :::align-center\n \\___________________________\nAssinatura do(a) aluno(a)\n:::\n',
+  content: '**Requerimento para Aproveitamento de Optativas de Livre Escolha**\nAo(À) Coordenador(a) do Curso de Ciência da Computação\nProf(a). {coordinatorName}\n\nEu,**{studentName}**, aluno(a) regularmente matriculado(a) no curso de Ciência da Computação desta Universidade, matrícula nº {studentId}, venho por meio desta solicitar o aproveitamento da(s) disciplina(s) abaixo relacionada(s) como disciplina(s) complementar(es) optativa(s) de livre escolha, conforme histórico escolar em anexo.\n {listOfDisciplines}\n\n Nestes termos, pede deferimento.\n:::align-center\nJoão Pessoa, {requestDate} \n::: \n\n\n\n:::align-center\n \\___________________________\n Assinatura do(a) aluno(a)\n:::\n',
   variables: {
     coordinatorName: 'text',
     guidingProfessor: 'text',
     studentId: 'text',
     studentName: 'text',
-    requestDate: 'date'
+    requestDate: 'date',
+    listOfDisciplines: 'text',
   }
 }
 
@@ -84,7 +88,10 @@ function App() {
   const [variaveis, setVariaveis] = useState<Record<string, any>>(
     Object.fromEntries(Object.keys(template.variables).map((key) => [key, '']))
   );
-
+  const addDisciplina = () => {
+  setDisciplinas((old) => [...old, '']);
+  };
+  const [disciplinas, setDisciplinas] = useState<string[]>(['']);
   // Estado para controlar se o PDF deve ser exibido
   const [pdfReady, setPdfReady] = useState(false);
 
@@ -100,20 +107,29 @@ function App() {
       setVariaveis(old => ({ ...old, [name]: value }));
     }
   };
-
+  const handleDisciplinaChange = (index: number, value: string) => {
+  const novas = [...disciplinas];
+  novas[index] = value.trim() === '' ? ' ' : value;
+  setDisciplinas(novas);
+  };
   // Instancia o mecanismo de template apenas uma vez
   const engine = useMemo(() => new TemplateEngine(template.content), []);
   // Preenche o template com as variáveis formatadas
   const resultado = useMemo(() => {
+    const studentNameClean = variaveis.studentName === '' ? "Seu nome" : variaveis.studentName;
+    const coordinatorNameClean = variaveis.coordinatorName === '' ? "Nome Coordenador" : variaveis.coordinatorName;
+    const guidingProfessorClean = variaveis.guidingProfessor === '' ? "Nome Orientador" : variaveis.guidingProfessor;
+    const disciplinasCorrigidas = disciplinas.map((d) => d.trim() === '' ? 'Disciplina' : d);
     const formattedVariables = {
       ...variaveis,
-      studentName: removeTrailingSpaces(variaveis.studentName),
-      coordinatorName: removeTrailingSpaces(variaveis.coordinatorName),
-      guidingProfessor: removeTrailingSpaces(variaveis.guidingProfessor),
+      studentName: removeTrailingSpaces(studentNameClean),
+      coordinatorName: removeTrailingSpaces(coordinatorNameClean),
+      guidingProfessor: removeTrailingSpaces(guidingProfessorClean),
       requestDate: formatDate(variaveis.requestDate),
+      listOfDisciplines: disciplinasCorrigidas.filter(Boolean).map(d => `- ${d}`).join('\n'),
     };
     return engine.preencher(formattedVariables);
-  }, [engine, variaveis]);
+  }, [engine, variaveis,disciplinas]);
 
   // Função para ativar a visualização/geração do PDF
   const handleGeneratePDF = () => {
@@ -127,20 +143,57 @@ function App() {
 
       <h2>Preencha os campos:</h2>
       <form>
-        {Object.entries(template.variables).map(([key, type]) => (
-          <div key={key} style={{ marginBottom: '10px' }}>
-            <label style={{ display: 'block', marginBottom: '5px' }}>
-              {VariavelPDF[key]}:
-            </label>
-            <input
-              type={type}
-              name={key}
-              value={variaveis[key]}
-              onChange={handleChange}
-              style={{ padding: '5px', width: '300px' }}
-            />
-          </div>
-        ))}
+        {Object.entries(template.variables).map(([key, type]) => {
+          if (key === 'listOfDisciplines') {
+            return (
+              <div key={key} style={{ marginBottom: '10px' }}>
+                <label style={{ display: 'block', marginBottom: '5px' }}>
+                  {VariavelPDF[key]}:
+                </label>
+                {disciplinas.map((disciplina, index) => (
+                  <input
+                    key={index}
+                    type="text"
+                    value={disciplina}
+                    onChange={(e) => handleDisciplinaChange(index, e.target.value)}
+                    placeholder={`Disciplina ${index + 1}`}
+                    style={{ padding: '5px', width: '300px', marginBottom: '5px', display: 'block' }}
+                  />
+                ))}
+                <button
+                  type="button"
+                  onClick={addDisciplina}
+                  style={{
+                    padding: '5px 10px',
+                    backgroundColor: '#FFA500',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '3px',
+                    cursor: 'pointer',
+                    marginTop: '5px',
+                  }}
+                >
+                  Adicionar outra disciplina
+                </button>
+              </div>
+            );
+          }
+          // Caso não seja listOfDisciplines, renderiza o input normal
+          return (
+            <div key={key} style={{ marginBottom: '10px' }}>
+              <label style={{ display: 'block', marginBottom: '5px' }}>
+                {VariavelPDF[key]}:
+              </label>
+              <input
+                type={type}
+                name={key}
+                value={variaveis[key]}
+                onChange={handleChange}
+                style={{ padding: '5px', width: '300px' }}
+              />
+            </div>
+          );
+        })}
       </form>
 
       <button
@@ -162,7 +215,8 @@ function App() {
       {pdfReady && (
         <>
           {/* Visualização do PDF na tela para debug ou não*/}
-          <PDFViewer width={1280} height={1208} style={{ border: "none", marginTop: '20px' }}>
+          <PDFViewer width={1280} height={1208} style={{ border: "none", marginTop: '20px' } }>
+            
             <PDFDocument markdown={resultado} />
           </PDFViewer>
           {/* Link para download do PDF */}
