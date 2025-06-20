@@ -1,7 +1,14 @@
 {
 	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
 	"files": {
-		"ignore": ["**/build/**", "**/client/**", "**/dist/**", "**/node_modules/**", "bun.lock"],
+		"ignore": [
+			"**/.next/**",
+			"**/build/**",
+			"**/client/**",
+			"**/dist/**",
+			"**/node_modules/**",
+			"bun.lock"
+		],
 		"ignoreUnknown": true
 	},
 	"formatter": {
@@ -12,8 +19,7 @@
 		"formatter": {
 			"arrowParentheses": "asNeeded",
 			"lineWidth": 140,
-			"quoteStyle": "single",
-			"semicolons": "asNeeded",
+			"semicolons": "always",
 			"trailingCommas": "all"
 		},
 		"parser": {
@@ -21,9 +27,7 @@
 		}
 	},
 	"linter": {
-		"enabled": true,
 		"rules": {
-			"recommended": true,
 			"a11y": {
 				"noSvgWithoutTitle": "warn",
 				"useAltText": "warn",
@@ -33,12 +37,21 @@
 			},
 			"complexity": {
 				"noBannedTypes": "warn",
-				"noForEach": "warn"
+				"noForEach": "off"
 			},
 			"correctness": {
 				"noUnusedPrivateClassMembers": "warn",
 				"noUnusedImports": "error",
 				"noUnusedVariables": "warn"
+			},
+			"nursery": {
+				"useSortedClasses": {
+					"fix": "safe",
+					"level": "warn",
+					"options": {
+						"attributes": ["classList"]
+					}
+				}
 			},
 			"security": {
 				"noDangerouslySetInnerHtml": "warn"
@@ -50,7 +63,7 @@
 				"noParameterAssign": "warn",
 				"useConsistentArrayType": "error",
 				"useConst": "warn",
-				"useImportType": "off",
+				"useImportType": "error",
 				"useSingleVarDeclarator": "off",
 				"useTemplate": "warn"
 			},

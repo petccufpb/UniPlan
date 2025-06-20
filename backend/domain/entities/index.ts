@@ -1,3 +1,1 @@
-export type {
-	
-} from "@uniplan/infra";
+export type {} from "@infra";

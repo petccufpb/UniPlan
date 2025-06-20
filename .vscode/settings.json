@@ -18,6 +18,7 @@
 		"editor.defaultFormatter": "tamasfe.even-better-toml"
 	},
 	"editor.formatOnSave": true,
+	"explorer.sortOrderLexicographicOptions": "upper",
 	"files.insertFinalNewline": true,
 	"typescript.enablePromptUseWorkspaceTsdk": true,
 	"typescript.preferences.preferTypeOnlyAutoImports": true,

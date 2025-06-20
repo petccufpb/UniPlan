@@ -6,5 +6,5 @@
 		"change": "Simple changes that don't amount to a feature.",
 		"perf": false
 	},
-	"validScopes": [""]
+	"validScopes": ["backend", "frontend"]
 }

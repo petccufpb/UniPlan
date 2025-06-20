@@ -1,0 +1,14 @@
+{
+	"extends": "@hyoretsu/tsconfig/backend",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@application": ["application"],
+			"@domain": ["domain"],
+			"@infra/*": ["infra/*"],
+			"@infra": ["infra"]
+		},
+		"rootDir": "../",
+		"strict": true
+	}
+}

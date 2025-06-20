@@ -1,8 +1,8 @@
 export class HttpException extends Error {
-	constructor(
-		public message: string,
-		public statusCode = 500,
-	) {
-		super(message);
-	}
+  constructor(
+    public override message: string,
+    public statusCode = 500,
+  ) {
+    super(message);
+  }
 }

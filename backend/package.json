@@ -1,0 +1,30 @@
+{
+	"name": "backend",
+	"version": "1.0.0",
+	"dependencies": {
+		"@elysiajs/cors": "^1.1.0",
+		"@elysiajs/swagger": "^1.1.1",
+		"elysia": "^1.1.13",
+		"kysely": "^0.27.3",
+		"pg": "^8.12.0"
+	},
+	"devDependencies": {
+		"@hyoretsu/tsconfig": "^1.0.4",
+		"@types/pg": "^8.11.6",
+		"prisma": "^6.1.0",
+		"prisma-kysely": "^1.8.0"
+	},
+	"prisma": {
+		"schema": "infra/sql/schema.prisma"
+	},
+	"private": true,
+	"scripts": {
+		"build": "bun build --compile --target=bun-linux-arm64 --outfile=./dist/server ./index.ts",
+		"dev": "cd .. && bun run --watch ./infra/index.ts",
+		"migrate": "prisma migrate dev --create-only && prisma generate",
+		"migrate_deploy": "prisma migrate deploy",
+		"migrate_dev": "prisma migrate dev",
+		"prepare": "prisma generate",
+		"start": "NODE_ENV=production bun ./infra/index.ts"
+	}
+}
