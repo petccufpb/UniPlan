@@ -58,7 +58,13 @@ const PDFDocument = ({ markdown }: PDFDocumentProps) => (
     </Page>
   </Document>
 )
-
+export enum VariavelPDF {
+	coordinatorName = 'Nome do Coordenador',
+	guidingProfessor = 'Professor Orientador',
+	studentId = 'Matrícula do Aluno',
+	studentName = 'Nome do Aluno',
+	requestDate = 'Data da Solicitação',
+}
 // Template do documento, com variáveis a serem preenchidas pelo usuário
 const template = {
   title: "Dispensa de estágio supervisionado",
@@ -117,14 +123,14 @@ function App() {
   // Renderização do formulário, visualização e download do PDF
   return (
     <div style={{ padding: '20px', fontFamily: 'Arial' }}>
-      <h1>Gerador de PDF com Variáveis</h1>
+      <h1>Gerador de PDF</h1>
 
       <h2>Preencha os campos:</h2>
       <form>
         {Object.entries(template.variables).map(([key, type]) => (
           <div key={key} style={{ marginBottom: '10px' }}>
             <label style={{ display: 'block', marginBottom: '5px' }}>
-              {key}:
+              {VariavelPDF[key]}:
             </label>
             <input
               type={type}
