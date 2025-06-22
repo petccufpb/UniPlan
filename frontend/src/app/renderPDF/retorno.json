@@ -1,0 +1,41 @@
+[
+	{
+		"id": 1,
+		"title": "Dispensa de estágio supervisionado",
+		"content": "<justify><b>ANEXO III da Resolução nº 04/2023 do Colegiado do Curso de Ciência da Computação, que regulamenta o Estágio Supervisionado no Curso de Ciência da Computação, do Centro de Informática, da Universidade Federal da Paraíba.</b><br/><br/>Ao(À) Coordenador(a) do Curso de Ciência da Computação<br/>Prof(a). {data[\"Nome do coordenador\"]}<br/><br/>Eu, <b>{data[\"Nome do aluno\"]}</b>, aluno(a) regularmente matriculado(a) no curso de Ciência da Computação desta Universidade, matrícula nº {data[\"Matrícula do aluno\"]}, venho por meio desta <b>requerer a dispensa de Estágio Supervisionado</b> por já ter realizado <b>estágio não obrigatório</b>, realizado sob orientação do(a) professor(a) <b>{data[\"Professor orientador\"]}</b>, conforme documentação em anexo.</justify><center><br/><br/><br/>João Pessoa, {format(data[\"Data da solicitação\"], \"dd\")} de {format(data[\"Data da solicitação\"], \"MMMM\")} de {format(data[\"Data da solicitação\"], \"yyyy\")}</center><center><br/><br/><br/><br/>_______________________________________<br/>Assinatura do(a) aluno(a)</center><br/>",
+		"variables": {
+			"Nome do coordenador": "text",
+			"Professor orientador": "text",
+			"Matrícula do aluno": "text",
+			"Nome do aluno": "text",
+			"Data da solicitação": "date"
+		},
+		"curriculum": "Ciência da Computação"
+	},
+	{
+		"id": 2,
+		"title": "Aproveitamento de optativas de livre escolha",
+		"content": "<justify><center><b>Requerimento para aproveitamento de Optativas de Livre Escolha</b></center><br/><br/>Ilmo(a). Sr(a).<br/>Coordenador(a) do Curso de Ciência da Computação<br/>Eu, <b>{data[\"Nome do aluno\"]}</b>, aluno(a) regularmente matriculado(a) no curso de Ciência da Computação, matrícula {data[\"Matrícula do aluno\"]}, venho solicitar aproveitamento da(s) disciplina(s) abaixo relacionada(s) como disciplina(s) <b>complementar(es) optativa(s) de livre escolha</b>, conforme histórico escolar em anexo.<br/></justify><center>{data[\"Optativas\"].map(each => `1. ${each}`).join(<br/>)}<br/><br/>Nestes termos,<br/>pede deferimento.<br/><br/>João Pessoa, {format(data[\"Data da solicitação\"], \"dd\")} de {format(data[\"Data da solicitação\"], \"MMMM\")} de {format(data[\"Data da solicitação\"], \"yyyy\")}</center><center><br/><br/><br/><br/>_______________________________________<br/>Assinatura do(a) aluno(a)</center>",
+		"variables": {
+			"Nome do aluno": "text",
+			"Matrícula do aluno": "text",
+			"Optativas": "text[]",
+			"Data da solicitação": "date?"
+		},
+		"curriculum": "Ciência da Computação"
+	},
+	{
+    "id": 3,
+    "title": "Matrícula em Trabalho de Conclusão de Curso",
+    "content": "<justify><b>ANEXO I da Resolução nº 05/2023 do Colegiado do Curso de Ciência da Computação, que regulamenta o Trabalho de Conclusão de Curso no Curso de Ciência da Computação, do Centro de Informática, da Universidade Federal da Paraíba.</b><br/><br/>Ao(A) Coordenador do Curso de Ciência da Computação<br/>Prof(a). {data[\"Nome do Coordenador\"]}<br/><br/>Eu, <b>{data[\"Nome do aluno\"]}</b>, aluno(a) regularmente matriculado no curso de Ciência da Computação desta Universidade, matrícula nº {data[\"Matrícula do aluno\"]}, venho por meio deste requerer matrícula na atividade de Trabalho de Conclusão de Curso em Ciência da Computação, sob orientação do professor(a) {data[\"Professor orientador\"]}, no período letivo {data[\"Período letivo\"]}.</justify><center><br/><br/>João Pessoa, {format(data[\"Data da solicitação\"], \"dd\")} de {format(data[\"Data da solicitação\"], \"MMMM\")} de {format(data[\"Data da solicitação\"], \"yyyy\")}</center><center><br/><br/><br/><br/>_______________________________________<br/>Assinatura do(a) aluno(a)</center>",
+    "variables": {
+        "Nome do Coordenador": "text",
+        "Nome do aluno": "text",
+        "Matrícula do aluno": "text",
+        "Professor orientador": "text",
+        "Período letivo": "text",
+        "Data da solicitação": "date?"
+    },
+    "curriculum": "Ciência da Computação"
+}
+]

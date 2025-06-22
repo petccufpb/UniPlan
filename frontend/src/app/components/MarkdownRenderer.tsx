@@ -1,195 +1,183 @@
-import { Link, StyleSheet, Text, View } from '@react-pdf/renderer'
-import { marked } from 'marked'
-import type { Token, TokenizerExtension } from 'marked'
-import React from 'react'
+'use client';
 
+import React from 'react';
+import { Text, StyleSheet, Document, Page, View } from '@react-pdf/renderer';
+
+// Definição de constantes para padronizar valores de estilo
+const fontSizevalue = 14;
+const lineHeightvalue = 1.5;
+const marginBottomValue = 20;
+const marginRightValue = 20;
+
+
+// Estilos usados para os elementos de texto no PDF
 const styles = StyleSheet.create({
-	h1: { fontFamily: 'Helvetica', fontSize: 24, marginBottom: 10, marginTop: 15 },
-	h2: { fontFamily: 'Helvetica', fontSize: 18, marginBottom: 8, marginTop: 12 },
-	h3: { fontFamily: 'Helvetica', fontSize: 14, marginBottom: 6, marginTop: 10 },
-	h4: { fontFamily: 'Helvetica', fontSize: 12, marginBottom: 4, marginTop: 8 },
-	p: { fontFamily: 'Helvetica', fontSize: 12, marginBottom: 10 },
-	list: { paddingLeft: 20, marginBottom: 10 },
-	listItem: { flexDirection: 'row', alignItems: 'flex-start', marginBottom: 4 },
-	listItemSymbol: { marginRight: 5, fontSize: 11, fontFamily: 'Helvetica' },
-	listItemContent: { flex: 1, fontSize: 11, fontFamily: 'Helvetica' },
-	hr: { borderBottomWidth: 1, borderBottomColor: '#cccccc', marginVertical: 15 },
-	strong: { fontFamily: 'Helvetica-Bold' },
-	em: { fontStyle: 'italic' },
-	del: { textDecoration: 'line-through' },
-	link: { color: 'blue', textDecoration: 'underline' },
-	preformatted: {
-		fontFamily: 'Helvetica',
-		fontSize: 12,
-		marginTop: 10,
-		marginBottom: 10,
-	},
-})
+  h1: { fontSize: fontSizevalue, fontWeight: 'bold', lineHeight: lineHeightvalue },
+  p: { fontSize: fontSizevalue, lineHeight: lineHeightvalue },
+  b: { fontSize: fontSizevalue, fontWeight: 'bold', lineHeight: lineHeightvalue },
+  center: { fontSize: fontSizevalue, textAlign: 'center', lineHeight: lineHeightvalue },
+  left: { fontSize: fontSizevalue, textAlign: 'left', lineHeight: lineHeightvalue },
+  right: { fontSize: fontSizevalue, textAlign: 'right', lineHeight: lineHeightvalue },
+  justify: { fontSize: fontSizevalue, textAlign: 'justify', lineHeight: lineHeightvalue },
+  default: { fontSize: fontSizevalue, lineHeight: lineHeightvalue },
+});
 
-interface AlignmentContainerToken {
-	type: 'alignmentContainer'
-	raw: string
-	align: 'center' | 'right' | 'left' | 'justify'
-	tokens: Token[]
+// Estilo geral da página do PDF e de containers (View)
+const pdfStyles = StyleSheet.create({
+  View: {
+    marginLeft: marginBottomValue,
+    marginRight: marginRightValue,
+    paddingTop: 20,
+    paddingRight: 40,
+  },
+  page: {
+    marginLeft: marginBottomValue,
+    marginRight: marginRightValue,
+    paddingTop: 40,
+    fontSize: fontSizevalue,
+    fontFamily: 'Helvetica',
+    lineHeight: lineHeightvalue,
+  },
+});
+
+// Função simples para substituir todas as tags <br> por quebras de linha reais (\n)
+function processBreakLine(content: string): string {
+  return content.replace(/<br\s*\/?>/gi, '\n');
 }
 
-const alignmentExtension: TokenizerExtension = {
-	name: 'alignmentContainer',
-	level: 'block',
-	start(src: string): number | undefined {
-		return src.match(/:::\s*align-(center|right|left|justify)/)?.index
-	},
-	tokenizer(this: any, src: string): AlignmentContainerToken | undefined {
-		const rule = /^:::\s*align-(center|right|left|justify)\n([\s\S]+?)\n:::/;
-		const match = rule.exec(src);
-
-		if (match) {
-			const align = match[1].trim() as AlignmentContainerToken['align'];
-			const innerContent = match[2].trim();
-			const tokens = this.lexer.blockTokens(innerContent, []);
-			return {
-				type: 'alignmentContainer',
-				raw: match[0],
-				align: align,
-				tokens: tokens,
-			};
-		}
-		return undefined;
-	},
+// Interface para representar blocos HTML interpretados
+interface HtmlBlock {
+  tag: string | null; // null representa texto puro (sem tag HTML)
+  content: string; // O conteúdo de texto do bloco
+  children?: HtmlBlock[]; // Possíveis filhos (blocos internos para tags aninhadas)
 }
 
-marked.use({ extensions: [alignmentExtension] });
+// Função recursiva para encontrar blocos HTML dentro de uma string de entrada
+function findTag(tag: string | null, text: string): HtmlBlock[] {
+  const regex = /<(\w+)[^>]*>([\s\S]*?)<\/\1>/g; // Expressão regular para encontrar tags HTML abertas e fechadas
+  const blocks: HtmlBlock[] = [];
+  let lastIndex = 0;
+  let match;
 
-const renderInlineTokens = (tokens: Token[] | undefined): React.ReactNode => {
-	if (!tokens || tokens.length === 0) return null;
+  while ((match = regex.exec(text)) !== null) {
+    // Captura o texto fora das tags encontradas (texto puro)
+    if (match.index > lastIndex) {
+      const plainText = text.substring(lastIndex, match.index);
+      if (plainText) {
+        blocks.push({ tag: null, content: plainText });
+      }
+    }
 
-	return tokens.map((token, index) => {
-		const key = `${token.type}-${index}`;
+    // Recursivamente processa o conteúdo interno da tag (suporta aninhamento de tags)
+    const innerBlocks = findTag(match[1], match[2]);
+    if (innerBlocks.length > 0) {
+      blocks.push({ tag: match[1].toLowerCase(), content: '', children: innerBlocks });
+    } else {
+      blocks.push({ tag: match[1].toLowerCase(), content: match[2] });
+    }
 
-		switch (token.type) {
-			case 'strong':
-				return (
-					<Text key={key} style={styles.strong}>
-						{renderInlineTokens(token.tokens)}
-					</Text>
-				)
-			case 'em':
-				return (
-					<Text key={key} style={styles.em}>
-						{renderInlineTokens(token.tokens)}
-					</Text>
-				)
-			case 'del':
-				return (
-					<Text key={key} style={styles.del}>
-						{renderInlineTokens(token.tokens)}
-					</Text>
-				)
-			case 'link':
-				return (
-					<Link key={key} src={token.href} style={styles.link}>
-						{renderInlineTokens(token.tokens)}
-					</Link>
-				)
-			case 'text':
-				return <Text key={key}>{token.raw}</Text>
-			default:
-				return null
-		}
-	})
+    lastIndex = regex.lastIndex;
+  }
+
+  // Adiciona o texto restante após a última tag
+  if (lastIndex < text.length) {
+    const plainText = text.substring(lastIndex);
+    if (plainText) {
+      blocks.push({ tag: null, content: plainText });
+    }
+  }
+
+  return blocks;
 }
 
-interface ListItemToken {
-	type: string
-	raw: string
-	tasks?: boolean
-	checked?: boolean
-	tokens: Token[]
+// Função que envolve um array de nodes React dentro de um único <Text> (usado para garantir um bloco pai único)
+function wrapInText(nodes: React.ReactNode[]): React.ReactNode {
+  return <Text>{nodes}</Text>;
 }
 
-type ListToken = Token & {
-	ordered?: boolean
-	items: ListItemToken[]
+// Renderiza a estrutura de blocos HTML em elementos React-PDF (<Text>), mapeando estilos
+function renderHtmlInline(blocks: HtmlBlock[]): React.ReactNode[] {
+  const children: React.ReactNode[] = [];
+
+  blocks.forEach((block, index) => {
+    let style = styles.default; // Estilo padrão
+
+    // Mapeia a tag HTML para um estilo específico
+    switch (block.tag) {
+      case 'h1':
+        style = styles.h1;
+        break;
+      case 'p':
+        style = styles.p;
+        break;
+      case 'b':
+        style = styles.b;
+        break;
+      case 'center':
+        style = styles.center;
+        break;
+      case 'left':
+        style = styles.left;
+        break;
+      case 'right':
+        style = styles.right;
+        break;
+      case 'justify':
+        style = styles.justify;
+        break;
+      default:
+        style = styles.default;
+        break;
+    }
+
+    // Se o bloco tem filhos, renderiza recursivamente os filhos dentro de um <Text> com o estilo
+    if (block.children && block.children.length > 0) {
+      children.push(
+        <Text key={index} style={style}>
+          {renderHtmlInline(block.children)}
+        </Text>
+      );
+    } else {
+      // Caso contrário, apenas renderiza o conteúdo de texto com o estilo
+      children.push(
+        <Text key={index} style={style}>
+          {block.content}
+        </Text>
+      );
+    }
+  });
+
+  return children;
 }
 
-const renderToken = (token: Token, index: number): React.ReactNode => {
-	const key = `${token.type}-${index}`
-
-	switch (token.type) {
-		case 'rawBlock':
-			return <Text key={key}>{token.text}</Text>
-
-		case 'alignmentContainer':
-			return (
-				<View key={key} style={{ textAlign: token.align }}>
-					{token.tokens?.map((childToken: Token, childIndex: number) =>
-						renderToken(childToken, index * 1000 + childIndex)
-					)}
-				</View>
-			)
-
-		case 'heading': {
-			const headingStyle = styles[`h${token.depth}` as keyof typeof styles] || styles.h4
-			return (
-				<Text key={key} style={headingStyle}>
-					{renderInlineTokens(token.tokens)}
-				</Text>
-			)
-		}
-
-		case 'paragraph':
-			return (
-				<Text key={key} style={styles.p}>
-					{renderInlineTokens(token.tokens)}
-				</Text>
-			)
-
-		case 'list':
-			return (
-				<View key={key} style={styles.list}>
-					{(token.items as ListItemToken[]).map((item: ListItemToken, itemIndex: number) => {
-						const itemKey = `${key}-item-${itemIndex}`
-						return (
-							<View key={itemKey} style={styles.listItem}>
-								<Text style={styles.listItemSymbol}>
-									{(token as ListToken).ordered ? `${itemIndex + 1}.` : '•'}
-								</Text>
-								<Text style={styles.listItemContent}>
-									{renderInlineTokens(item.tokens)}
-								</Text>
-							</View>
-						)
-					})}
-				</View>
-			)
-
-		case 'hr':
-			return <View key={key} style={styles.hr} />
-
-		case 'space':
-			return (
-				<React.Fragment key={key}>
-					{token.raw.split('\n').map((each: string, i: number) => (
-						<View key={`${key}-line-${i}`} style={{ height: 10 }} />
-					))}
-				</React.Fragment>
-			)
-
-		default:
-			console.warn(`Token de bloco não suportado: ${token.type}`)
-			return null
-	}
+// Tipo para as props do componente PDFDocument
+interface PDFDocumentProps {
+  htmlString: string; // String de HTML simples (tags básicas como <p>, <b>, <h1>, etc)
 }
 
-interface MarkdownRendererProps {
-	children: string
-}
+// Componente principal que gera o PDF a partir de uma string HTML
+const PDFDocument = ({ htmlString }: PDFDocumentProps) => {
+  // Primeiro passo: processa as quebras de linha
+  const textBreakLine = processBreakLine(htmlString);
 
-const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ children }) => {
-	const markdownText = children || ''
-	const tokens = marked.lexer(markdownText)
+  // Converte o HTML em blocos interpretáveis
+  const blocks = findTag(null, textBreakLine);
 
-	return <>{tokens.map((token, index) => renderToken(token, index))}</>
-}
+  // Renderiza os blocos como uma árvore de elementos React
+  const reactNodes = renderHtmlInline(blocks);
 
-export default MarkdownRenderer
+  // Envolve tudo dentro de um único <Text> pai (necessário para o PDF Renderer)
+  const content = wrapInText(reactNodes);
+
+  return (
+    <Document>
+      <Page size="A4" style={pdfStyles.page}>
+        <View style={pdfStyles.View}>
+          {content}
+        </View>
+      </Page>
+    </Document>
+  );
+};
+
+export default PDFDocument;
