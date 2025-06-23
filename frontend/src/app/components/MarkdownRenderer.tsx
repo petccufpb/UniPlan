@@ -100,53 +100,52 @@ function renderHtmlInline(blocks: HtmlBlock[]): React.ReactNode[] {
   const children: React.ReactNode[] = [];
 
   blocks.forEach((block, index) => {
-    let style = styles.default; // Estilo padrão
+      let style = styles.default; // Estilo padrão
 
     // Mapeia a tag HTML para um estilo específico
-    switch (block.tag) {
-      case 'h1':
-        style = styles.h1;
-        break;
-      case 'p':
-        style = styles.p;
-        break;
-      case 'b':
-        style = styles.b;
-        break;
-      case 'center':
-        style = styles.center;
-        break;
-      case 'left':
-        style = styles.left;
-        break;
-      case 'right':
-        style = styles.right;
-        break;
-      case 'justify':
-        style = styles.justify;
-        break;
-      default:
-        style = styles.default;
-        break;
-    }
+      switch (block.tag) {
+        case 'h1':
+          style = styles.h1;
+          break;
+        case 'p':
+          style = styles.p;
+          break;
+        case 'b':
+          style = styles.b;
+          break;
+        case 'center':
+          style = styles.center;
+          break;
+        case 'left':
+          style = styles.left;
+          break;
+        case 'right':
+          style = styles.right;
+          break;
+        case 'justify':
+          style = styles.justify;
+          break;
+        default:
+          style = styles.default;
+          break;
+      }
 
     // Se o bloco tem filhos, renderiza recursivamente os filhos dentro de um <Text> com o estilo
-    if (block.children && block.children.length > 0) {
-      children.push(
-        <Text key={index} style={style}>
-          {renderHtmlInline(block.children)}
-        </Text>
-      );
-    } else {
-      // Caso contrário, apenas renderiza o conteúdo de texto com o estilo
-      children.push(
-        <Text key={index} style={style}>
-          {block.content}
-        </Text>
-      );
-    }
-  });
-
+      if (block.children && block.children.length > 0) {
+          children.push(
+            <Text key={index} style={style}>
+              {renderHtmlInline(block.children)}
+            </Text>
+          );
+      } else {
+        // Caso contrário, apenas renderiza o conteúdo de texto com o estilo
+          children.push(
+            <Text key={index} style={style}>
+              {block.content}
+            </Text>
+          );
+        }
+      });
   return children;
 }
 
@@ -159,16 +158,14 @@ interface PDFDocumentProps {
 const PDFDocument = ({ htmlString }: PDFDocumentProps) => {
   // Primeiro passo: processa as quebras de linha
   const textBreakLine = processBreakLine(htmlString);
-
+  console.log(textBreakLine)
   // Converte o HTML em blocos interpretáveis
   const blocks = findTag(null, textBreakLine);
-
   // Renderiza os blocos como uma árvore de elementos React
   const reactNodes = renderHtmlInline(blocks);
-
   // Envolve tudo dentro de um único <Text> pai (necessário para o PDF Renderer)
   const content = wrapInText(reactNodes);
-
+  console.log(content)
   return (
     <Document>
       <Page size="A4" style={pdfStyles.page}>

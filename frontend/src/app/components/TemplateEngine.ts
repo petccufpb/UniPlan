@@ -15,12 +15,11 @@ export class TemplateEngine {
         const key = doubleQuoted || singleQuoted;
         const arr = variaveis[key];
 
-        console.log(`Substituindo lista da chave "${key}":`, arr);
-
         if (!Array.isArray(arr)) return '';
-
-        return '<br/>' + arr.map((each: string) => templateStr.replace(/\$\{each\}/g, each)).join('<br/>') 
-  
+        
+        return'<br/>' + arr.map((each: string) => templateStr.replace(/\$\{each\}/g, each)).join('<br/>') 
+        
+        
         }
     );
 
