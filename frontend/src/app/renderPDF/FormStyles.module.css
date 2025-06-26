@@ -1,8 +1,10 @@
 .form-container {
+  min-height: 100vh;
   padding: 20px;
   font-family: Arial, sans-serif;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 0.6fr 1fr;
+  column-gap: 20px;
   background-color: #ccc;
 }
 
@@ -41,7 +43,7 @@
 }
 
 .add-button,
-.update-button,
+.view-pdf-button,
 .download-button {
   display: inline-block;
   padding: 10px 20px;
@@ -59,7 +61,7 @@
   margin-top: 5px;
 }
 
-.update-button {
+.view-pdf-button {
   background-color: #2196F3;
   margin-right: 10px;
 }
@@ -79,29 +81,29 @@
   color: red;
   margin-top: 10px;
 }
-form {
-  max-width: 600px;
+.form-container form {
+  max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 30px;
   font-family: Arial, sans-serif;
   background-color: #f9f9f9;
-  border-radius: 8px;
+  border-radius: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-form div {
+.form-container form div {
   margin-bottom: 15px;
 }
 
-form label {
+.form-container form label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
   color: #333;
 }
 
-form input[type="text"],
-form input[type="date"] {
+.form-container form input[type="text"],
+.form-container form input[type="date"] {
   width: 100%;
   padding: 8px 12px;
   border: 1px solid #ccc;
@@ -110,9 +112,63 @@ form input[type="date"] {
   transition: border-color 0.2s;
 }
 
-form input[type="text"]:focus,
-form input[type="date"]:focus {
+.form-container form input[type="text"]:focus,
+.form-container form input[type="date"]:focus {
   border-color: #007BFF;
+  outline: none;
+}
+
+.form-container .add-button {
+  margin-top: 8px;
+  padding: 8px 12px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.form-container .add-button:hover {
+  background-color: #218838;
+}
+
+.form-container form button[type="submit"] {
+  margin-top: 15px;
+  padding: 10px 16px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.form-container form button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.form-container form select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  appearance: none; 
+  -webkit-appearance: none; 
+  -moz-appearance: none; 
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23333' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 8px 10px;
+}
+
+.form-container form select:focus {
+  border-color: #007BFF;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
   outline: none;
 }
 
@@ -131,17 +187,4 @@ form input[type="date"]:focus {
   background-color: #218838;
 }
 
-form button[type="submit"] {
-  margin-top: 15px;
-  padding: 10px 16px;
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-}
 
-form button[type="submit"]:hover {
-  background-color: #0056b3;
-}

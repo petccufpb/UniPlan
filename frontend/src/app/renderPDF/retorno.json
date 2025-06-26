@@ -8,7 +8,7 @@
 			"Professor orientador": "text",
 			"Matrícula do aluno": "text",
 			"Nome do aluno": "text",
-			"Data da solicitação": "date"
+			"Data da solicitação": "date?"
 		},
 		"curriculum": "Ciência da Computação"
 	},
@@ -37,5 +37,93 @@
         "Data da solicitação": "date?"
     },
     "curriculum": "Ciência da Computação"
+},
+{
+  "id": 4,
+  "title": "Dispensa de Atividade Extensionista de Estágio Supervisionado Não Obrigatório",
+  "content": "<justify><center><b>Requerimento de Dispensa de Atividade Extensionista de Estágio Supervisionado Não Obrigatório</b></center><br/><br/>Ilmo(a). Sr(a).<br/>Coordenador(a) do Curso de Ciência da Computação<br/>Prof(a). {data[\"Nome do Coordenador\"]}<br/><br/>Eu, <b>{data[\"Nome do aluno\"]}</b>, aluno(a) regularmente matriculado(a) no curso de Ciência da Computação desta Universidade, matrícula <b>{data[\"Matrícula do aluno\"]}</b>, venho requerer a dispensa da atividade curricular <b>Atividade Extensionista de Estágio Supervisionado Não Obrigatório</b>, código <b>DINF00069</b>, por já ter <b>{data[\"Motivo da dispensa\"]}</b>, conforme documentação em anexo.</justify><center><br/><br/>João Pessoa, {format(data[\"Data da solicitação\"], \"dd\")} de {format(data[\"Data da solicitação\"], \"MMMM\")} de {format(data[\"Data da solicitação\"], \"yyyy\")}</center><center><br/><br/><br/><br/>_______________________________________<br/>Assinatura do(a) aluno(a)</center>",
+  "variables": {
+    "Nome do Coordenador": "text",
+    "Nome do aluno": "text",
+    "Matrícula do aluno": "text",
+    "Motivo da dispensa": "text",
+    "Data da solicitação": "date?"
+  },
+  "curriculum": "Ciência da Computação"
+},
+{
+  "id": 5,
+  "title": "Integralização de Carga Horária dos Conteúdos Complementares Flexíveis e Extensão",
+  "content": "<justify><center><b>Requerimento de Integralização de Carga Horária dos Conteúdos Complementares Flexíveis e Extensão</b></center><br/><br/>Ilmo(a). Sr(a).<br/>Coordenador(a) do Curso de Ciência da Computação<br/>Prof(a). {data[\"Nome do Coordenador\"]}<br/><br/>Eu, <b>{data[\"Nome do aluno\"]}</b>, aluno(a) regularmente matriculado(a) no curso de Ciência da Computação desta Universidade, matrícula <b>{data[\"Matrícula do aluno\"]}</b>, venho requerer a integralização de <b>{data[\"Horas flexíveis\"]}</b> horas na carga horária dos conteúdos complementares flexíveis, com a integralização concomitante de <b>{data[\"Horas extensão\"]}</b> horas de extensão, conforme documentação em anexo.</justify><center><br/><br/>João Pessoa, {format(data[\"Data da solicitação\"], \"dd\")} de {format(data[\"Data da solicitação\"], \"MMMM\")} de {format(data[\"Data da solicitação\"], \"yyyy\")}</center><center><br/><br/><br/><br/>_______________________________________<br/>Assinatura do(a) aluno(a)</center>",
+  "variables": {
+    "Nome do Coordenador": "text",
+    "Nome do aluno": "text",
+    "Matrícula do aluno": "text",
+    "Horas flexíveis": "text",
+    "Horas extensão": "text",
+    "Data da solicitação": "date?"
+  },
+  "curriculum": "Ciência da Computação"
+},
+{
+  "id": 6,
+  "title": "Requerimento de Matrícula em Disciplina(s)",
+  "content": "<justify><center><b>Requerimento de Matrícula em Disciplina(s)</b></center><br/><br/>Ao(À)<br/>Coordenador(a) do curso de <b>{data[\"Nome do Curso\"]}</b><br/>Professor(a) <b>{data[\"Nome do Coordenador\"]}</b><br/><br/>Eu, <b>{data[\"Nome do aluno\"]}</b>, matrícula <b>{data[\"Matrícula do aluno\"]}</b>, aluno(a) do curso de <b>{data[\"Nome do Curso\"]}</b>, solicito matrícula na(s) disciplina(s) abaixo relacionada(s), pelo seguinte motivo:<br/><br/>{data[\"Motivo da solicitação\"]}<br/><br/></justify><table><header>Codigo,Nome,Turma,Horário</header>{data[\"Disciplinas\"].map(d => `${d.codigo},${d.nome},${d.turma},${d.horario}`).join('')}</table><br/><br/><center>João Pessoa, {format(data[\"Data da solicitação\"], \"dd\")} de {format(data[\"Data da solicitação\"], \"MMMM\")} de {format(data[\"Data da solicitação\"], \"yyyy\")}</center><center><br/><br/><br/><br/>_______________________________________<br/>Assinatura do(a) discente</center>",
+  "variables": {
+    "Nome do Curso": "text",
+    "Nome do Coordenador": "text",
+    "Nome do aluno": "text",
+    "Matrícula do aluno": "text",
+    "Motivo da solicitação": "text",
+    "Disciplinas": "list[object]",
+    "object": {
+        "codigo": "text",
+        "nome": "text",
+        "turma": "text",
+        "horario": "text"
+      },
+    "Data da solicitação": "date?"
+  },
+  "curriculum": "Ciência da Computação"
+},
+{
+  "id": 7,
+  "title": "Matrícula em Atividade de Estágio Supervisionado",
+  "content": "<justify><center><b>Requerimento de Matrícula em Atividade de Estágio Supervisionado</b></center><br/><br/>Ilmo(a). Sr(a).<br/>Coordenador(a) do Curso de Ciência da Computação<br/>Prof(a). {data[\"Nome do Coordenador\"]}<br/><br/>Eu, <b>{data[\"Nome do aluno\"]}</b>, aluno(a) regularmente matriculado(a) no curso de Ciência da Computação desta Universidade, matrícula <b>{data[\"Matrícula do aluno\"]}</b>, venho por meio desta requerer matrícula na atividade de <b>Estágio Supervisionado</b>, sob orientação do(a) professor(a) <b>{data[\"Nome do orientador\"]}</b>.<br/><br/><center>João Pessoa, {format(data[\"Data da solicitação\"], \"dd\")} de {format(data[\"Data da solicitação\"], \"MMMM\")} de {format(data[\"Data da solicitação\"], \"yyyy\")}</center><center><br/><br/><br/><br/>_______________________________________<br/>Assinatura do(a) aluno(a)<br/><br/>_______________________________________<br/>Assinatura do(a) Professor(a) orientador(a)</center>",
+  "variables": {
+    "Nome do Coordenador": "text",
+    "Nome do aluno": "text",
+    "Matrícula do aluno": "text",
+    "Nome do orientador": "text",
+    "Data da solicitação": "date?"
+  },
+  "curriculum": "Ciência da Computação"
+},
+{
+  "id": 8,
+  "title": "Requerimento de Dispensa de Disciplinas",
+  "content": "<justify><center><b>Requerimento para Dispensa de Disciplinas</b></center><br/><br/>Ilmo(a) Sr(a)<br/>Coordenador(a) do Curso de Ciência da Computação<br/><br/>Eu, <b>{data[\"Nome do aluno\"]}</b>, aluno(a) do Curso de Ciência da Computação, matrícula nº <b>{data[\"Matrícula do aluno\"]}</b>, venho mui respeitosamente solicitar à V.Sa., <b>DISPENSA</b> da disciplina: <b>{data[\"Nome da disciplina na UFPB\"]}</b>, código <b>{data[\"Código da disciplina na UFPB\"]}</b>, que cursei no Curso de <b>{data[\"Curso de origem\"]}</b>, como a disciplina <b>{data[\"Nome da disciplina cursada\"]}</b>.<br/><br/>Nesses termos,<br/>pede deferimento.<br/><br/><center>João Pessoa, {format(data[\"Data da solicitação\"], \"dd\")} de {format(data[\"Data da solicitação\"], \"MMMM\")} de {format(data[\"Data da solicitação\"], \"yyyy\")}</center><center><br/><br/><br/><br/>_______________________________________<br/>Assinatura do(a) aluno(a)</center><br/><br/><b>ANEXAR OS DOCUMENTOS ABAIXO RELACIONADOS (EM FORMATO PDF):</b><br/><br/>1. Ementa da disciplina cursada, devidamente carimbada e assinada pelo departamento que a emitiu, ou retirada do SIGAA/UFPB.<br/>2. Histórico Escolar, com nota, devidamente carimbado e assinado pela instituição de origem, ou retirado do SIGAA/UFPB.",
+  "variables": {
+    "Nome do aluno": "text",
+    "Matrícula do aluno": "text",
+    "Nome da disciplina na UFPB": "text",
+    "Código da disciplina na UFPB": "text",
+    "Curso de origem": "text",
+    "Nome da disciplina cursada": "text",
+    "Data da solicitação": "date?"
+  },
+  "curriculum": "Ciência da Computação"
+},
+{
+  "id": 9,
+  "title": "Dispensa de Estágio Supervisionado por Experiência Profissional",
+  "content": "<justify><center><b>Requerimento de Dispensa de Estágio Supervisionado por Experiência Profissional</b></center><br/><br/>Ilmo(a). Sr(a).<br/>Coordenador(a) do Curso de Ciência da Computação<br/>Prof(a). {data[\"Nome do Coordenador\"]}<br/><br/>Eu, <b>{data[\"Nome do aluno\"]}</b>, aluno(a) regularmente matriculado(a) no curso de Ciência da Computação desta Universidade, matrícula <b>{data[\"Matrícula do aluno\"]}</b>, venho por meio desta requerer dispensa da atividade de <b>Estágio Supervisionado</b> por já ter experiência profissional em Ciência da Computação, conforme documentação em anexo.<br/><br/></justify><center>João Pessoa, {format(data[\"Data da solicitação\"], \"dd\")} de {format(data[\"Data da solicitação\"], \"MMMM\")} de {format(data[\"Data da solicitação\"], \"yyyy\")}</center><center><br/><br/><br/><br/>_______________________________________<br/>Assinatura do(a) aluno(a)</center>",
+  "variables": {
+    "Nome do Coordenador": "text",
+    "Nome do aluno": "text",
+    "Matrícula do aluno": "text",
+    "Data da solicitação": "date?"
+  },
+  "curriculum": "Ciência da Computação"
 }
 ]
