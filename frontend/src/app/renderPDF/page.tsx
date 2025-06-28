@@ -1,9 +1,9 @@
 'use client';
 
-import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
+import { pdf } from '@react-pdf/renderer';
+import { useMemo, useState } from 'react';
 import PDFDocument from '../components/htmlToReactPDF';
 import { TemplateEngine } from '../components/TemplateEngine';
-import { useMemo, useState } from 'react';
 import retorno from './retorno.json';
 import styles from './FormStyles.module.css';
 
@@ -15,7 +15,7 @@ function formatNamePart(input: string): string {
   const ignoredWords = ['de', 'do', 'da', 'dos', 'das'];
   return input
     .toLowerCase()
-    .split(' ')
+    .split(/\s+/)
     .map((word) =>
       ignoredWords.includes(word)
         ? word
@@ -28,16 +28,21 @@ function getInitialVars(variables: Record<string, any>) {
   const acc: Record<string, any> = {};
 
   Object.entries(variables).forEach(([key, type], index, arr) => {
-    if (key === 'object' && type !== null && !Array.isArray(type)) {
-      return; 
-    }
-    if (type === 'text[]') {
-      acc[key] = [''];
-    } else if (type === 'list[object]') {
-      const schema = arr[index + 1]?.[1] ?? {};
-      acc[key] = [Object.fromEntries(Object.keys(schema).map((f) => [f, '']))];
-    } else {
-      acc[key] = '';
+    switch (type) {
+      case 'text[]':
+        acc[key] = [''];
+        break;
+      case 'list[object]': {
+        const schema = arr[index + 1]?.[1] ?? {};
+        acc[key] = [Object.fromEntries(Object.keys(schema).map((f) => [f, '']))];
+        break;
+      }
+      case 'date?':
+        acc[key] = new Date().toISOString().split('T')[0];
+        break;
+      default:
+        if (key === 'object' && type !== null && !Array.isArray(type)) break;
+        acc[key] = '';
     }
   });
   return acc;
@@ -45,18 +50,16 @@ function getInitialVars(variables: Record<string, any>) {
 
 export default function App() {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
-  const [showPDF, setShowPDF] = useState<boolean>(false);
-  const [pdfContent, setPdfContent] = useState<string>('');
   const template = retorno[selectedIndex];
-  const [variaveis, setVariaveis] = useState<Record<string, any>>(
+  const [variables, setVariables] = useState<Record<string, any>>(
     getInitialVars(template.variables)
   );
 
-  const resultado = useMemo(() => {
-    const formattedVars: Record<string, any> = { ...variaveis };
+  const PDFContent = useMemo(() => {
+    const formattedVars: Record<string, any> = { ...variables };
 
     for (const key of Object.keys(formattedVars)) {
-      const value = formattedVars[key]
+      const value = formattedVars[key];
 
       if (/nome/i.test(key) || /Professor/i.test(key)) {
         formattedVars[key] = removeTrailingSpaces(value || '');
@@ -64,29 +67,29 @@ export default function App() {
 
       if (Array.isArray(value) && typeof value[0] === 'string') {
         formattedVars[key] = value.every((item) => !item.trim())
-          ? [`• Digite o(a) ${key}`]
+          ? [`• Digite ${key}`]
           : value.filter((item) => item.trim() !== '').map((item) => `• ${item}`);
       }
-      
-     
+
       if (value === '' && !Array.isArray(value)) {
-        formattedVars[key] = `Digite o(a) ${key}`;
+        formattedVars[key] = `Digite ${key}`;
       }
     }
+
     const engine = new TemplateEngine(template.content);
     return engine.preencher(formattedVars);
-  }, [variaveis, template]);
+  }, [variables, template]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setVariaveis((prev) => ({
+    setVariables((prev) => ({
       ...prev,
       [name]: name.includes('Nome') ? formatNamePart(value) : value,
     }));
   };
 
   const handleListChange = (key: string, index: number, value: string) => {
-    setVariaveis((prev) => {
+    setVariables((prev) => {
       const updatedList = [...(prev[key] || [])];
       updatedList[index] = value.trim() === '' ? ' ' : value;
       return { ...prev, [key]: updatedList };
@@ -99,171 +102,160 @@ export default function App() {
     field: string,
     value: string
   ) => {
-    setVariaveis((prev) => {
+    setVariables((prev) => {
       const updatedList = [...(prev[key] || [])];
       updatedList[index] = { ...updatedList[index], [field]: value };
       return { ...prev, [key]: updatedList };
     });
   };
 
-  const addElementToList = (key: string) => {
-    setVariaveis((prev) => ({
-      ...prev,
-      [key]: [...(prev[key] || []), ''],
-    }));
-  };
-
   const handleTemplateChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newIndex = Number(e.target.value);
     setSelectedIndex(newIndex);
-    setVariaveis(getInitialVars(retorno[newIndex].variables));
-    setShowPDF(false);
-    setPdfContent('');
+    setVariables(getInitialVars(retorno[newIndex].variables));
   };
 
-  const handleVisualizarPDF = () => {
-    setPdfContent(resultado);
-    setShowPDF(true);
+  const handleViewPDF = async () => {
+    const doc = <PDFDocument htmlString={PDFContent} />;
+    const blob = await pdf(doc).toBlob();
+    const url = URL.createObjectURL(blob);
+    window.open(url, '_blank');
+    setTimeout(() => URL.revokeObjectURL(url), 5000);
   };
 
-  const memoizedPDFDocument = useMemo(
-    () => <PDFDocument htmlString={pdfContent} />,
-    [pdfContent]
-  );
+  const handleDownloadPDF = async () => {
+    const blob = await pdf(<PDFDocument htmlString={PDFContent} />).toBlob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'documento.pdf';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const addElementToList = (key: string, schema?: Record<string, string>) => {
+    setVariables((prev) => ({
+      ...prev,
+      [key]: [...(prev[key] || []), schema ? Object.fromEntries(Object.keys(schema).map((f) => [f, ''])) : ''],
+    }));
+  };
 
   return (
     <div className={styles['form-container']}>
-      <form>
-        <h1>Gerador de PDFs de Requisições</h1>
-
-        <label>Selecione o Template:</label>
-        <select value={selectedIndex} onChange={handleTemplateChange}>
-          {retorno.map((tpl, idx) => (
-            <option key={tpl.id} value={idx}>
-              {tpl.title}
-            </option>
-          ))}
-        </select>
-
-        <h2>{template.title}</h2>
-
-        {Object.entries(template.variables).map(([key, type], i, arr) => {
-          if(key === 'object'){
-            return
-          }
-          if (type === 'text[]') {
-            return (
-              <div key={key}>
-                <label>{key}:</label>
-                {(variaveis[key] as string[]).map((value, index) => (
-                  <input
-                    key={index}
-                    type="text"
-                    value={value}
-                    onChange={(e) => handleListChange(key, index, e.target.value)}
-                    placeholder={`Item ${index + 1}`}
-                    className={styles.input}
-                  />
-                ))}
-                <button
-                  type="button"
-                  onClick={() => addElementToList(key)}
-                  className={styles['add-button']}
-                >
-                  Adicionar outro item
-                </button>
-              </div>
-            );
-          }
-
-          if (type === 'list[object]') {
-            const schemaEntry = arr[i + 1];
-            const schema =
-              schemaEntry && typeof schemaEntry[1] === 'object' ? schemaEntry[1] : {};
-
-            return (
-              <div key={key}>
-                <label>{key}:</label>
-                {(variaveis[key] as any[]).map((item, idx) => (
-                  <div key={idx} className={styles['list-item']}>
-                    {Object.keys(schema).map((field) => (
-                      <input
-                        key={field}
-                        type={schema[field] === 'date?' ? 'date' : 'text'}
-                        placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
-                        value={item[field]}
-                        onChange={(e) =>
-                          handleListObjectChange(key, idx, field, e.target.value)
-                        }
-                        className={styles.input}
-                      />
-                    ))}
-                  </div>
-                ))}
-                <button
-                  type="button"
-                  onClick={() => {
-                    const emptyObj = Object.fromEntries(
-                      Object.keys(schema).map((f) => [f, ''])
-                    );
-                    setVariaveis((prev) => ({
-                      ...prev,
-                      [key]: [...(prev[key] || []), emptyObj],
-                    }));
-                  }}
-                  className={styles['add-button']}
-                >
-                  Adicionar {key.slice(0, -1)}
-                </button>
-              </div>
-            );
-          }
-
-          return (
-            <div key={key}>
-              <label>{key}:</label>
-              <input
-                type={type === 'date?' ? 'date' : 'text'}
-                name={key}
-                value={variaveis[key]}
-                onChange={handleChange}
-                className={styles.input}
-              />
-            </div>
-          );
-        })}
-
-        <button
-          onClick={handleVisualizarPDF}
-          type="button"
-          className={styles['view-pdf-button']}
-        >
-          Visualizar PDF
-        </button>
-      </form>
-
-      {showPDF && (
-        <div>
-          <div style={{ border: '1px solid #ccc', height: '80vh' }}>
-            <PDFViewer width="100%" height="100%">
-              {memoizedPDFDocument}
-            </PDFViewer>
+      <div className={styles['container']}>
+        <div className={styles['sidebar-select']}>
+          <h1>Gerador de PDFs de Requisições</h1>
+          <label htmlFor="template">Selecione a requisição:</label>
+          <select id="template" value={selectedIndex} onChange={handleTemplateChange}>
+            {retorno.map((tpl, idx) => (
+              <option key={tpl.id} value={idx}>
+                {tpl.title}
+              </option>
+            ))}
+          </select>
+          <div className={styles['div-buttons']}>
+            <button onClick={handleViewPDF} type="button" className={styles['view-pdf-button']}>
+              Ver PDF
+            </button>
+            <button onClick={handleDownloadPDF} type="button" className={styles['download-button']}>
+              Download PDF
+            </button>
           </div>
-
-          <PDFDownloadLink
-            document={memoizedPDFDocument}
-            fileName={`${
-              (variaveis['Nome do aluno']?.split(' ')[0] || 'documento')
-            }_${template.title.replace(/\s+/g, '_')}.pdf`}
-          >
-            {({ loading }) =>
-              loading ? 'Gerando PDF...' : (
-                <button className={styles['download-button']}>Baixar PDF</button>
-              )
-            }
-          </PDFDownloadLink>
         </div>
-      )}
+
+        <div className={styles['sidebar-inputs']}>
+          <form>
+            <h2>{template.title}</h2>
+            <div className={styles['inputs-container']}>
+              {Object.entries(template.variables).map(([key, type], i, arr) => {
+                if (key === 'object') return null;
+
+                if (type === 'text[]') {
+                  return (
+                    <div key={key}>
+                      <label>{key}:</label>
+                      {(variables[key] as string[]).map((value, index) => (
+                        <input
+                          key={index}
+                          type="text"
+                          value={value}
+                          onChange={(e) => handleListChange(key, index, e.target.value)}
+                          placeholder={`Item ${index + 1}`}
+                          className={styles.input}
+                        />
+                      ))}
+                      <button
+                        type="button"
+                        onClick={() => addElementToList(key)}
+                        className={styles['add-button']}
+                      >
+                        Add item
+                      </button>
+                    </div>
+                  );
+                }
+
+                if (type === 'list[object]') {
+                  const schemaEntry = arr[i + 1];
+                  const schema = schemaEntry && typeof schemaEntry[1] === 'object' ? schemaEntry[1] : {};
+
+                  return (
+                    <div key={key}>
+                      <label>{key}:</label>
+                      {(variables[key] as any[]).map((item, idx) => (
+                        <div key={idx} className={styles['list-item']} style={{
+                          display: 'grid',
+                          gridTemplateColumns: `repeat(${Object.keys(schema).length}, 1fr)`,
+                          gap: '12px',
+                          padding: '12px',
+                          border: '1px solid #e5e7eb',
+                          borderRadius: '8px',
+                          marginBottom: '12px',
+                          backgroundColor: '#f9fafb'
+                        }}>
+                          {Object.keys(schema).map((field) => (
+                            <input
+                              key={field}
+                              type={schema[field] === 'date?' ? 'date' : 'text'}
+                              placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
+                              value={item[field]}
+                              onChange={(e) => handleListObjectChange(key, idx, field, e.target.value)}
+                              className={styles.input}
+                            />
+                          ))}
+                        </div>
+                      ))}
+                      <button
+                        type="button"
+                        onClick={() => addElementToList(key, schema)}
+                        className={styles['add-button']}
+                      >
+                        Add {key.slice(0, -1)}
+                      </button>
+                    </div>
+                  );
+                }
+
+                return (
+                  <div key={key}>
+                    <label htmlFor={key}>{key}:</label>
+                    <input
+                      id={key}
+                      type={type === 'date?' ? 'date' : 'text'}
+                      name={key}
+                      value={variables[key]}
+                      onChange={handleChange}
+                      className={styles.input}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }
