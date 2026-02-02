@@ -1,5 +1,6 @@
 {
   "lockfileVersion": 1,
+  "configVersion": 0,
   "workspaces": {
     "": {
       "name": "uniplan",
@@ -56,6 +57,7 @@
       "name": "frontend",
       "version": "1.0.0",
       "dependencies": {
+        "@ag-media/react-pdf-table": "^2.0.3",
         "@react-pdf/renderer": "^4.3.0",
         "actify": "^0.4.1",
         "htmlparser2": "^10.0.0",
@@ -83,6 +85,8 @@
     "@parcel/watcher",
   ],
   "packages": {
+    "@ag-media/react-pdf-table": ["@ag-media/react-pdf-table@2.0.3", "", { "peerDependencies": { "@react-pdf/renderer": "^2.0.2 || ^3.0.0 || ^4.0.0", "@react-pdf/stylesheet": "^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0", "react": "^16.8.6 || ^17.0.0 || ^18.0.0 || ^19.0.0" } }, "sha512-IscjfAOKwsyQok9YmzvuToe6GojN7J8hF0kb8C+K8qZX1DvhheGO+hRSAPxbv2nKMbSpvk7CIhSqJEkw++XVWg=="],
+
     "@alloc/quick-lru": ["@alloc/quick-lru@5.2.0", "", {}, "sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw=="],
 
     "@antfu/ni": ["@antfu/ni@0.21.8", "", { "bin": { "na": "bin/na.mjs", "ni": "bin/ni.mjs", "nr": "bin/nr.mjs", "nu": "bin/nu.mjs", "nci": "bin/nci.mjs", "nlx": "bin/nlx.mjs", "nun": "bin/nun.mjs" } }, "sha512-90X8pU2szlvw0AJo9EZMbYc2eQKkmO7mAdC4tD4r5co2Mm56MT37MIG8EyB7p4WRheuzGxuLDxJ63mF6+Zajiw=="],
